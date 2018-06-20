@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TopTenSellingBooks" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7902df3f-d0a6-488f-8f27-ce6f9527447f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ISBN, sum(Quantity) AS TOTAL_QUANTITY FROM user_order_history GROUP BY ISBN order by TOTAL_QUANTITY DESC LIMIT 10]]>
+	</queryString>
+	<field name="ISBN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ISBN"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="user_order_history"/>
+	</field>
+	<field name="TOTAL_QUANTITY" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_QUANTITY"/>
+	</field>
+	<group name="TOTAL_QUANTITY">
+		<groupExpression><![CDATA[$F{TOTAL_QUANTITY}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="107" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="0" width="245" height="101" uuid="570e6a13-a1a6-4fe2-9ff7-ff6740cf0ffa"/>
+				<imageExpression><![CDATA["images/Books-Store.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="225" y="77" width="380" height="30" uuid="3721aaf3-bd0c-40f3-8e28-1bb88ee3f76f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cooper Black" size="24"/>
+				</textElement>
+				<text><![CDATA[Top Ten Selling Books Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<rectangle>
+				<reportElement x="40" y="4" width="730" height="50" backcolor="#0A7E80" uuid="d2c462ea-fc29-4536-a3cd-bbc8c9f6f1ac"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="124" y="10" width="100" height="30" forecolor="#FFFFFF" uuid="c14ed863-f74a-4aac-b77a-d5cfe2db0a6d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c2e11df-c626-4db7-9e79-d57fa60725d1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="550" y="10" width="144" height="30" forecolor="#FFFFFF" uuid="f6a4f45d-778e-411f-b8b3-31f58feddb47">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31689312-f474-498d-8a18-70bc1b295615"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Quantity]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="86" y="12" width="176" height="30" uuid="d2c09567-d850-4c2b-8ab7-1e04d8225e3f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c2e11df-c626-4db7-9e79-d57fa60725d1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="586" y="24" width="100" height="30" uuid="c49d44e3-eeec-4b57-a33b-0f04605a9db7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="31689312-f474-498d-8a18-70bc1b295615"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_QUANTITY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

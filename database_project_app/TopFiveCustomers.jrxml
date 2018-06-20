@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TopFiveCustomers" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be0bed21-d865-42ce-9d14-1291b4b0e1e0">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  user_order_history.User_id, Username, SUM(Price) AS PURCHASE FROM user_order_history, user_info
+where user_info.User_id = user_order_history.User_id 
+GROUP BY  user_order_history.User_id order by PURCHASE DESC LIMIT 5]]>
+	</queryString>
+	<field name="User_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="User_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="user_order_history"/>
+	</field>
+	<field name="Username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="user_info"/>
+	</field>
+	<field name="PURCHASE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PURCHASE"/>
+	</field>
+	<group name="User_id">
+		<groupExpression><![CDATA[$F{User_id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="107" splitType="Stretch">
+			<image>
+				<reportElement x="40" y="0" width="245" height="101" uuid="89033ffe-3cb3-432a-be20-e7da02a85a8f"/>
+				<imageExpression><![CDATA["images/Books-Store.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="225" y="77" width="380" height="30" uuid="034eeb1f-bc7c-4839-8656-7520e6407472"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cooper Black" size="24"/>
+				</textElement>
+				<text><![CDATA[Top Five Customers Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<rectangle>
+				<reportElement x="40" y="3" width="730" height="50" backcolor="#0A7E80" uuid="7ef9a381-98bf-4b76-a211-0c8a80aef921"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="78" y="10" width="100" height="30" forecolor="#FFFFFF" uuid="f93fdd91-915b-4e98-8012-fe8d49c5aa59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb9a2822-05db-4bbf-9776-64ce6854284a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[User Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="10" width="100" height="30" forecolor="#FFFFFF" uuid="3d209b13-21ef-44f4-b9cb-952eb6aab907">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6da0bf71-8436-4fe3-b2a9-8203c5a2e327"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Username]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="10" width="100" height="30" forecolor="#FFFFFF" uuid="d8826900-e4b6-4534-a3b2-3e9587c25aa9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aa59790-d013-4f2b-aadb-dc8f6626213c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Purchase Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="20" width="100" height="30" uuid="000f9256-e31e-46d8-8bfc-f7c36f50620b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb9a2822-05db-4bbf-9776-64ce6854284a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{User_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="20" width="100" height="30" uuid="6a4ca540-2a97-4bf9-b19a-cf9565df66ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6da0bf71-8436-4fe3-b2a9-8203c5a2e327"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="20" width="100" height="30" uuid="b7198e11-b2b3-4913-9e62-35a771d14a3b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1aa59790-d013-4f2b-aadb-dc8f6626213c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
